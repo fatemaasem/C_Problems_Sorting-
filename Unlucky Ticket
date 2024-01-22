@@ -1,0 +1,77 @@
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#include <iostream>
+#define ll long long
+
+using namespace std;
+const int N = 100;
+
+
+
+int main() {
+	int n;
+	cin >> n;
+	string sd;
+	cin >> sd;
+	vector<int>v1;
+	vector<int>v2;
+	int b = 0;
+	while (b<n*2) {
+		
+		if(b<n)
+		v2.push_back(sd[b]-'0');
+		else
+			v1.push_back(sd[b]-'0');
+		
+		b++;
+	}
+	sort(v1.begin(), v1.end());
+	sort(v2.begin(),v2.end());
+	
+	string ans;
+	string vv;
+	int nn = 1;
+	int s = 0, e = 0 ;
+	/*
+	for (auto io : v2)
+		cout << io << " ";
+	for (auto io : v1)
+		cout << io << " ";
+		*/
+	
+	if (v1[s] == v2[e])
+		cout << "NO\n";
+	else {
+	if (v1[s] < v2[e])
+		ans = "less";
+	else if (v1[s] > v2[e])
+		ans = "more";
+	//cout << ans << " ";
+	e++; s++;
+		while (s<n&&e<n) {
+			if (v1[s] < v2[e])
+				vv = "less";
+			else if (v1[s] > v2[e])
+				vv = "more";
+			//cout << vv << " ";
+			 if (vv != ans || v1[s] == v2[e]) {
+				nn = 0;
+			//	cout << "lk";
+				break;
+			}
+			s++;
+			e++;
+		}
+		if (nn == 1)
+			cout << "YES\n";
+		else
+			cout << "NO\n";
+	}
+}
