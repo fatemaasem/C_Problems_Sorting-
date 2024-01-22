@@ -1,0 +1,44 @@
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#include <iostream>
+#define ll long long
+
+using namespace std;
+const int N = 100;
+
+
+
+int main() {
+	int n, k;
+	cin >> n;
+	cin >> k;
+	vector<pair<int, int> >v(n);
+	for (int i = 0; i < n; i++) {
+		cin >> v[i].first>> v[i].second;
+		v[i].first = v[i].first * -1;
+	}
+	sort(v.begin(), v.end());
+	
+	int x = (v[k - 1].first);
+	int y = v[k - 1].second;
+	int c = 0;
+	bool vv = false;
+	for (int i = 0; i < n; i++) {
+		if (v[i].first == x && v[i].second == y) {
+			c++;
+			vv= true;
+		}
+		else if (vv == true)
+			break;
+	}
+	cout << c << " \n";
+}
+
+
