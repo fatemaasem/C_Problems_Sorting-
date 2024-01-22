@@ -1,0 +1,81 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#define ll long long
+
+using namespace std;
+const int N = 100;
+
+
+
+int main() {
+
+	int t;
+	cin >> t;
+	while (t--) {
+		vector<int>po;
+		vector<int>ne;
+		int n;
+		cin >> n;
+		for (int i = 0; i < n; i++) {
+			int x;
+			cin >> x;
+			if (x < 0)
+				ne.push_back(x);
+			else
+				po.push_back(x);
+		}
+
+		sort(po.begin(), po.end());
+		sort(ne.rbegin(), ne.rend());
+		
+		ll ma = -1e18;
+		for (int k = 0; k <= 5; k++) {
+			int numn = k, nump = 5 - k;
+			ll ans;
+			bool val = false;
+			if (numn % 2 == 0 && numn <= ne.size() && nump <= po.size()) {
+				val = true;
+				ans = 1;
+			//	cout << "nkjl " << numn << " " << nump << " " << ne.size() << " " << po.size() << " ";
+				for (int y = (int)ne.size() - 1; y >= (int)(ne.size() - numn); y--) {
+					ans *= (ne[y]);
+				//	cout << "y " << y << " ";
+				}
+				//cout << "anshhhh" << ans << "\n";
+				//cout << "1l ";
+				for (int r = (int)po.size() - 1; r >= (int)(po.size() - nump); r--) {
+					ans *= (po[r]);
+					//cout << "r=" << r << " ";
+				}
+
+				
+			}
+			else if (numn % 2 != 0 && numn <= ne.size() && nump <= po.size()) {
+				val = true;
+
+				ans = 1;
+				for (int p = 0; p < numn; p++)
+					ans *= (ne[p]);
+				for (int j = 0; j < nump; j++)
+					ans *= (po[j]);
+			//	cout << "ans " << ans << "\n";
+			}
+			if (val == true) {
+				ma = max(ma, ans);
+			//	cout << ma << " ";
+
+			}
+
+		}
+		cout << ma << "\n";
+	}
+}
