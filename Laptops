@@ -1,0 +1,48 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#define ll long long
+
+using namespace std;
+const int N = 100;
+
+
+
+int main() {
+	int n;
+	cin >>n;
+	multimap<int, int>m;
+	for (int i = 0; i < n; i++) {
+		int x, y;
+		cin >> x >> y;
+		m.insert({ x,y });
+	}
+	auto io = m.begin();
+	int fvalue = io->second;
+	io++;
+	auto io2=io;
+	int c = 0;
+	for (;io2!=m.end();io2++) {
+		if (fvalue >= io2->second) {
+			c ++;
+		}
+			
+		
+			fvalue = io2->second;
+	}
+	if (c>0)
+		cout << "Happy Alex\n";
+	else
+		cout << "Poor Alex\n";
+		
+		
+	}
+C++
